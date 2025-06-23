@@ -14,6 +14,6 @@ if($_SERVER['REQUEST_METOD'] === 'GET'){
     if($usuarioModel->inserir($nome,$email)){
         echo json_encode(["sucesso" => true, "mensagem" => "Usuário cadastrado com sucesso!"]);
     } else{
-        echo json_encode(["erro"=>"Erro ao cadastrar o usuário"]);
+        echo json_encode(["erro"=>"Erro ao cadastrar o Usuário"]);
     }
 }

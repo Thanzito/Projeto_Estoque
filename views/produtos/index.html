@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+</head>
+<body>
+    <h1>Lista de Produtos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço (R$)</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-produtos"></tbody>
+    </table>
+    <a href="../produtos/cadastro.html" class="link-basico">Cadastrar produto</a>
+
+    <script>
+        fetch('../../controllers/ProdutoController.php')
+         .then(res =>res.json())
+         .then(produtos =>{
+            const tabela = document.getElementById('tabela-produtos');
+            produtos.forEach(p => {
+                const linha = document.createElement('tr');
+                linha.innerHTML = `
+                <td>${p.nome}</td>
+                <td>${p.quantidade}</td>
+                <td>${parseFloat(p.preco).toFixed(2)}</td>
+            `;
+            tabela.appendChild(linha);
+            });
+         })
+         .catch(()=>{
+            alert('Erro ao carregar produtos.')
+         })
+    </script>
+</body>
+</html>
